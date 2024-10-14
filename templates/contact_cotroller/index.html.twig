@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact {% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Contacts </h1>
+     <a href="{{ path('app_contact_cotroller_new') }}" class="btn btn-success">Create New Contact</a> <br>
+     <a href="{{ path('app_client_index') }}" class="btn btn-success">Back to Client List</a>
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Civilite</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Telephone</th>
+                    <th>Email</th>
+                    <th>Description</th>
+                    <th>Associated Clients</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for contact in contacts %}
+                <tr>
+                    <td>{{ contact.id }}</td>
+                    <td>{{ contact.civilite }}</td>
+                    <td>{{ contact.nom }}</td>
+                    <td>{{ contact.prenom }}</td>
+                    <td>{{ contact.telephone }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td>{{ contact.description }}</td>
+                    <td>
+                    {% if contact.clients|length > 0 %}
+                        <ul>
+                            {% for client in contact.clients %}
+                                <li>Client ID: {{ client.getIdClient }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        No associated clients
+                    {% endif %}
+                </td>
+                    <td>
+                        <a href="{{ path('app_contact_cotroller_show', {'id': contact.id}) }}" class="btn btn-info btn-sm">Show</a>
+                        <a href="{{ path('app_contact_cotroller_edit', {'id': contact.id}) }}" class="btn btn-primary btn-sm">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8" class="text-center">No records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        
+    </div>
+{% endblock %}

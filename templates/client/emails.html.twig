@@ -1,0 +1,28 @@
+{# templates/client/emails.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Client Emails{% endblock %}
+
+{% block body %}
+    <h1>Client Email Addresses</h1>
+
+    <h2>All Valid Emails</h2>
+    <ul>
+        {% for email in validEmails %}
+            <li>{{ email }}</li>
+        {% else %}
+            <li>No valid emails found.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Duplicate Emails</h2>
+    <ul>
+        {% for email, count in duplicates %}
+            <li>{{ email }} ({{ count }} times)</li>
+        {% else %}
+            <li>No duplicate emails found.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ path('app_client_index') }}" class="circular-button">Back to Client List</a>
+{% endblock %}

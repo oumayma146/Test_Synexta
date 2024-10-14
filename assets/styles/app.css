@@ -1,3 +1,14 @@
+
+
 body {
-    background-color: skyblue;
+    background-color: #f8f9fa; 
+}
+
+.table th, .table td {
+    text-align: center; 
+}
+
+.table-dark th {
+    background-color: #343a40;
+    color: white; 
 }

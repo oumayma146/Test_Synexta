@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Client Index{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+      <h1 class="mb-4">Clients List</h1>
+      <a href="{{ path('app_client_emails') }}" class="btn btn-success">View Client Emails</a> <br>
+      <a href="{{ path('app_contact_cotroller_index') }}" class="btn btn-success">View Contact</a>
+
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Adresse</th>
+                    <th>CP</th>
+                    <th>Ville</th>
+                    <th>Téléphone</th>
+                    <th>Portable</th>
+                    <th>Email</th>
+                    <th>Raison Sociale</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for client in clients %}
+                <tr>
+                    <td>{{ client.getIdClient() }}</td>
+                    <td>{{ client.adresse }}</td>
+                    <td>{{ client.cp }}</td>
+                    <td>{{ client.ville }}</td>
+                    <td>{{ client.telephone }}</td>
+                    <td>{{ client.portable }}</td>
+                    <td>{{ client.email }}</td>
+                    <td>{{ client.raisonSociale }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8" class="text-center">No clients found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
